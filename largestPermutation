@@ -1,0 +1,56 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner read=new Scanner(System.in);
+        int N=read.nextInt();
+        int K=read.nextInt();
+        int A[]=new int[N];
+        int B[]=new int[N];
+        int C[]=new int[N];
+        int n=N;
+        for(int i=0;i<N;i++){
+            A[i]=read.nextInt();
+            B[i]=i;
+            C[N-A[i]]=i;
+            n--;
+           // System.out.println(A[i]);
+        }
+        
+        int j;
+        int index=-1;
+        for(int i=0;i<N;){
+            if(B[i]!=C[i]){
+                int pos1=B[i];
+                int pos2=C[i];
+                int val1=A[pos1];
+                int val2=A[pos2];
+                int temp=A[C[i]];
+                A[C[i]]=A[B[i]];
+                A[B[i]]=temp;
+                
+                C[N-val1]=pos2;
+                C[N-val2]=pos1;
+                
+          
+                i++;
+                K--;
+                if(K<=0) break;
+            }
+            else{
+                i+=1;    
+            }
+            
+        }
+        
+        for(int i=0;i<N;i++){
+            System.out.print(A[i]+" ");
+        }
+    }
+}
